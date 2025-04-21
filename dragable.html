@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draggable Div</title>
+  <style>
+    #draggable {
+      width: 150px;
+      height: 150px;
+      background-color: #4CAF50;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      cursor: move;
+      border-radius: 8px;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="draggable">Drag me!</div>
+
+<script>
+  const draggable = document.getElementById('draggable');
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  draggable.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    offsetX = e.clientX - draggable.offsetLeft;
+    offsetY = e.clientY - draggable.offsetTop;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      draggable.style.left = `${e.clientX - offsetX}px`;
+      draggable.style.top = `${e.clientY - offsetY}px`;
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+</script>
+
+</body>
+</html>
